@@ -97,7 +97,6 @@ def chaaizhan50(f):
 def chaaizhan51(f):
     # 数据大于50
     domains = read_txt(f)
-    print(domains)
     book = xlwt.Workbook(encoding='utf-8', style_compression=0)
     sheet = book.add_sheet(f'{f}_爱站查询结果', cell_overwrite_ok=True)
     col = ('域名', 'PC权重', '移动权重')
