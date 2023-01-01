@@ -89,7 +89,7 @@ def chaaizhan50(f):
         data = [data['domain'], data['pc_br'], data['m_br']]
         for j in range(0, 3):
             sheet.write(i + 1, j, data[j])
-    path = f'{str(time.time().__hash__())}_爱站查询查询结果.xls'
+    path = f'{str(time.time().__hash__())}_爱站查询结果.xls'
     book.save(path)
     print(f"表格已保存为{path}")
 
@@ -115,7 +115,7 @@ def chaaizhan51(f):
             data = [data['domain'], data['pc_br'], data['m_br']]
             for j in range(0, 3):
                 sheet.write(flag * 50 + i + 1, j, data[j])
-    path = f'{str(time.time().__hash__())}_爱站查询查询结果.xls'
+    path = f'{str(time.time().__hash__())}_爱站查询结果.xls'
     book.save(path)
     print(f"表格已保存为{path}")
 
