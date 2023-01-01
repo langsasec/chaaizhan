@@ -23,7 +23,7 @@ def Welcome():
 Options:
   -f TEXT     请输入所查域名的txt
   
-  txt文件内容单个域名换行(不允许出现http://或者https://)：
+  txt文件内容单个域名换行
   例如：
   www.langsasec.cn
   blog.langsasec.cn
@@ -40,13 +40,15 @@ def read_txt(file_name):
     file_data = file.readlines()  # 读取所有行
     for row in file_data:
         tmp_list = row.split(' ')  # 按‘，'切分每行的数据
-
+        # 去除可能可能有协议的情况，去除https://和http://
+        tmp_list[-1] = tmp_list[-1].replace('https://', '')
+        tmp_list[-1] = tmp_list[-1].replace('https://', '')
         # 去除带端口的情况,先去除每行数据冒号后的端口在添加|
         tmp_list[-1] = tmp_list[-1].split(":", 1)[0]
         tmp_list[-1] = tmp_list[-1] + '|'
-        print(tmp_list)
         tmp_list[-1] = tmp_list[-1].replace('\n', '|')  # 去掉换行符
         tmp_list[-1] = tmp_list[-1].replace('||', '|')  # 将之前加的|去掉
+
         data.append(tmp_list)  # 将每行数据插入data中
     if len(data) < 50 or len(data) == 50:
         # 数据不大于50条
