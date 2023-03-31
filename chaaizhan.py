@@ -42,7 +42,7 @@ def read_txt(file_name):
         tmp_list = row.split(' ')  # 按‘，'切分每行的数据
         # 去除可能可能有协议的情况，去除https://和http://
         tmp_list[-1] = tmp_list[-1].replace('https://', '')
-        tmp_list[-1] = tmp_list[-1].replace('https://', '')
+        tmp_list[-1] = tmp_list[-1].replace('http://', '')
         # 去除带端口的情况,先去除每行数据冒号后的端口在添加|
         tmp_list[-1] = tmp_list[-1].split(":", 1)[0]
         tmp_list[-1] = tmp_list[-1] + '|'
@@ -109,9 +109,11 @@ def chaaizhan51(f):
         res = requests.get(req).content.decode("utf-8")
         dict_data = json.loads(res)  # json转成python字典
         results = dict_data.get('data')['success']
+        time.sleep(1)  # 防止api访问频繁
         for i in range(len(results)):
             data = results[i]
             data = [data['domain'], data['pc_br'], data['m_br']]
+            print(data)
             for j in range(0, 3):
                 sheet.write(flag * 50 + i + 1, j, data[j])
     path = f'{str(time.time().__hash__())}_爱站查询结果.xls'
